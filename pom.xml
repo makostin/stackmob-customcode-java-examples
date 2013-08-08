@@ -28,7 +28,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <customcode.version>0.5.6</customcode.version>
+    <customcode.version>0.6.2</customcode.version>
+    <customcode.dev.version>0.1.7</customcode.dev.version>
   </properties>
     
   <dependencies>
@@ -51,7 +52,7 @@
     <dependency>
       <groupId>com.stackmob</groupId>
       <artifactId>stackmob-customcode-dev_2.10</artifactId>
-      <version>0.1.5</version>
+      <version>${customcode.dev.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
