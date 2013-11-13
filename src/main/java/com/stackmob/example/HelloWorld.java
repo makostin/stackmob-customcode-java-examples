@@ -42,6 +42,13 @@ public class HelloWorld implements CustomCodeMethod {
   @Override
   public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
     Map<String, Object> map = new HashMap<String, Object>();
+    try {
+          
+                Thread.sleep((long)26000);
+
+          
+            } catch (InterruptedException e) {
+            }
     map.put("msg", "Hello, world!");
     return new ResponseToProcess(HttpURLConnection.HTTP_OK, map);
   }
