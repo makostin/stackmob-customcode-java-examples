@@ -29,28 +29,42 @@ import java.util.Map;
 
 public class HelloWorld implements CustomCodeMethod {
 
-  @Override
-  public String getMethodName() {
-    return "hello_world";
-  }
+   @Override
+    public String getMethodName() {
+        return "register";
+    }
 
-  @Override
-  public List<String> getParams() {
-    return new ArrayList<String>();
-  }
+    @Override
+    public List<String> getParams() {
+        return Arrays.asList("device_id","user_id");
+    }
 
-  @Override
-  public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider serviceProvider) {
-    Map<String, Object> map = new HashMap<String, Object>();
-    try {
-          
-                Thread.sleep((long)26000);
+    @Override
+    public ResponseToProcess execute(ProcessedAPIRequest request, SDKServiceProvider sdkServiceProvider) {
 
-          
-            } catch (InterruptedException e) {
-            }
-    map.put("msg", "Hello, world!");
-    return new ResponseToProcess(HttpURLConnection.HTTP_OK, map);
-  }
+        String deviceId = request.getParams().get("device_id");
+        String userId = request.getParams().get("user_name");
+//        String facebookId = request.getParams().get("facebook_id");
+
+        DataService ds = sdkServiceProvider.getDataService();
+
+        HashMap<String, SMValue> device = new HashMap<String, SMValue>();
+
+        device.put("device_id", new SMString(deviceId)); //string
+        device.put("device_name", new SMString(deviceId + "_name")); //string
+        device.put("sm_owner", new SMString(userId)); //string
+
+
+        try {
+
+            ds.createObject("device", new SMObject(device));
+
+        } catch (InvalidSchemaException ise) {
+            ise.printStackTrace();
+        } catch (DatastoreException dse) {
+            dse.printStackTrace();
+        }
+        return new ResponseToProcess(HttpURLConnection.HTTP_OK, device);
+    }
 
 }
