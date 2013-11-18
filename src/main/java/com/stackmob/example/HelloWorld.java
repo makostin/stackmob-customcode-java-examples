@@ -36,7 +36,7 @@ public class HelloWorld implements CustomCodeMethod {
 
     @Override
     public List<String> getParams() {
-        return Arrays.asList("device_id","user_id");
+        return Arrays.asList("device_id","user_name");
     }
 
     @Override
